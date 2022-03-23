@@ -13,7 +13,7 @@ function fib(index) {
   return fib(index - 1) + fib(index - 2);
 }
 
-sub.on('messagess', (channel, message) => {
+sub.on('messagess abcc', (channel, message) => {
   redisClient.hset('values', message, fib(parseInt(message)));
 });
 sub.subscribe('insert');
