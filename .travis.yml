@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t edlee2k/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true stephengrider/react-test npm test
+  - docker run -e CI=true edlee2k/react-test npm test
 
 after_success:
-  - docker build -t stephengrider/multi-client ./client
-  - docker build -t stephengrider/multi-nginx ./nginx
-  - docker build -t stephengrider/multi-server ./server
-  - docker build -t stephengrider/multi-worker ./worker
+  - docker build -t edlee2k/multi-client ./client
+  - docker build -t edlee2k/multi-nginx ./nginx
+  - docker build -t edlee2k/multi-server ./server
+  - docker build -t edlee2k/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "12032000lxt" | docker login -u "edlee2k" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push stephengrider/multi-client
-  - docker push stephengrider/multi-nginx
-  - docker push stephengrider/multi-server
-  - docker push stephengrider/multi-worker
+  - docker push edlee2k/multi-client
+  - docker push edlee2k/multi-nginx
+  - docker push edlee2k/multi-server
+  - docker push edlee2k/multi-worker
