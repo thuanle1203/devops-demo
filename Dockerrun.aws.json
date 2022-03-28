@@ -6,21 +6,33 @@
       "image": "edlee2k/multi-client-10-14",
       "hostname": "client",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "portMappings": [{
+				"containerPort": 3000,
+				"hostPort": 3000
+			}]
     },
     {
       "name": "server",
       "image": "edlee2k/multi-server-10-14",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "portMappings": [{
+				"containerPort": 5000,
+				"hostPort": 5000
+			}]
     },
     {
       "name": "worker",
       "image": "edlee2k/multi-worker-10-14",
       "hostname": "worker",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "portMappings": [{
+				"containerPort": 5001,
+				"hostPort": 5001
+			}]
     },
     {
       "name": "nginx",
