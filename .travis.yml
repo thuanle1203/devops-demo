@@ -5,23 +5,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t edlee/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t edlee2k/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true edlee/react-test npm test
+  - docker run -e CI=true edlee2k/react-test npm test
 
 after_success:
-  - docker build -t edlee/multi-client-10-14 ./client
-  - docker build -t edlee/multi-nginx-10-14 ./nginx
-  - docker build -t edlee/multi-server-10-14 ./server
-  - docker build -t edlee/multi-worker-10-14 ./worker
+  - docker build -t edlee2k/multi-client-10-14 ./client
+  - docker build -t edlee2k/multi-nginx-10-14 ./nginx
+  - docker build -t edlee2k/multi-server-10-14 ./server
+  - docker build -t edlee2k/multi-worker-10-14 ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push edlee/multi-client-10-14
-  - docker push edlee/multi-nginx-10-14
-  - docker push edlee/multi-server-10-14
-  - docker push edlee/multi-worker-10-14
+  - docker push edlee2k/multi-client-10-14
+  - docker push edlee2k/multi-nginx-10-14
+  - docker push edlee2k/multi-server-10-14
+  - docker push edlee2k/multi-worker-10-14
 
 deploy:
   provider: elasticbeanstalk
