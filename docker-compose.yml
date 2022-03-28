@@ -1,9 +1,16 @@
 version: '3'
 services:
-  postgres:
-    image: 'postgres:latest'
+  mysql: # Example Service
+    container_name: myapp_mysql
+    restart: always
+    image: mysql:5.7
     environment:
-      - POSTGRES_PASSWORD=postgres_password
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=myapp
+      - MYSQL_PASSWORD=myapp
+      - MYSQL_DATABASE=apptest
+    ports:
+    - "3306:3306"
   redis:
     image: 'redis:latest'
   nginx:
@@ -26,11 +33,11 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - DBUSERNAME=myapp
+      - DBPASSWORD=root
+      - DBNAME=apptest
+      - DBPORT=3306
+      - DBHOST=mysql
   client:
     stdin_open: true
     build:
